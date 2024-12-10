@@ -1,0 +1,18 @@
+#java
+build/
+.gradle/
+
+out/
+
+#javascript
+node_modules/
+
+#php
+.phpunit.result.cache
+vendor/
+
+#python
+*.pyc
+
+#JetBrains IDE
+.idea/
