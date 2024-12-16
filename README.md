@@ -5,6 +5,7 @@ If you'd like to get a head-start on the class, you can make an edit to this Rea
 Give it a try! Add your name between the lines below.
 ___
 - Paul Moore
+- Dave Gabrielson
 ___
 
 
