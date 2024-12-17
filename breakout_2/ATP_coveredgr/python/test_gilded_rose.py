@@ -146,7 +146,9 @@ class GildedRoseTest(unittest.TestCase):
 
         self.assertEqual(50, items[0].quality)
 
-    def test_backstage_pass_quality_increases_each_day_when_concert_date_is_far_off_in_future(self):
+    def test_backstage_pass_quality_increases_each_day_when_concert_date_is_far_off_in_future(
+        self,
+    ):
         items = [Item("Backstage passes to a TAFKAL80ETC concert", 30, 23)]
         sut = GildedRose(items)
 
@@ -162,7 +164,9 @@ class GildedRoseTest(unittest.TestCase):
 
         self.assertEqual(42, items[0].quality)
 
-    def test_backstage_pass_quality_increases_much_more_when_concert_date_is_close(self):
+    def test_backstage_pass_quality_increases_much_more_when_concert_date_is_close(
+        self,
+    ):
         items = [Item("Backstage passes to a TAFKAL80ETC concert", 5, 40)]
         sut = GildedRose(items)
 
@@ -178,7 +182,9 @@ class GildedRoseTest(unittest.TestCase):
 
         self.assertEqual(0, items[0].quality)
 
-    def test_backstage_pass_quality_respects_maximum_value_even_when_concert_is_near(self):
+    def test_backstage_pass_quality_respects_maximum_value_even_when_concert_is_near(
+        self,
+    ):
         items = [Item("Backstage passes to a TAFKAL80ETC concert", 5, 49)]
         sut = GildedRose(items)
 
@@ -187,8 +193,7 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEqual(50, items[0].quality)
 
     def test_shop_contains_multiple_items_and_all_are_updated(self):
-        items = [Item("Sulfuras, Hand of Ragnaros", 0, 80),
-                 Item("generic item", 10, 5)]
+        items = [Item("Sulfuras, Hand of Ragnaros", 0, 80), Item("generic item", 10, 5)]
         sut = GildedRose(items)
 
         sut.update_quality()
@@ -196,5 +201,22 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEqual(0, items[0].sell_in)
         self.assertEqual(9, items[1].sell_in)
 
-if __name__ == '__main__':
+    def test_conjured_items_quality_goes_down_by_two(self):
+        items = [Item("Conjured item", 10, 5)]
+        sut = GildedRose(items)
+
+        sut.update_quality()
+
+        self.assertEqual(3, items[0].quality)
+
+    def test_conjured_items_sell_in_goes_down_by_one(self):
+        items = [Item("Conjured item", 10, 5)]
+        sut = GildedRose(items)
+
+        sut.update_quality()
+
+        self.assertEqual(9, items[0].sell_in)
+
+
+if __name__ == "__main__":
     unittest.main()
